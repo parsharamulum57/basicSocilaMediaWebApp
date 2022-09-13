@@ -15,8 +15,24 @@ const MongoStore=require('connect-mongo');
 const app=express();
 const db=require('./config/mongoose');
 
+//using sass
+const sassMiddleWare=require('node-sass-middleware');
+app.use(sassMiddleWare({
+    src: './assests/scss',
+    dest: './assests/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+}));
+
 app.use(express.urlencoded());
+app.use(express.static('./assests'));
 app.use(expressLayouts);
+//extract styles and scripts from subpages into the layout
+app.set("layout extractStyles", true);
+app.set('layout extractScripts', true);
+
+
 app.use(cookieParser());
 
 app.use(expressSession({

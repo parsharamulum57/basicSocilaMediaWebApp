@@ -1,13 +1,19 @@
-<header>
-    Header
 
-    <ul>
-        <% if(locals.user) { %>
-            <li> <%=locals.user.name %></li>
-            <li> <a href='/users/signout'>SignOut</a></li>
-        <% } else { %>
-            <li> <a href='/users/signin'>SignIn</a></li>
-            <li> <a href='/users/signup'>SignUp</a></li>
-        <% } %>
-    </ul>
+<header id='header'>
+    <div>
+        <p>FaceBook</p>
+    </div>
+    <div>
+        <ul id='sign'>
+            <% if(locals.user) { %>
+                <p>
+                    <%=locals.user.name %>
+                </p>
+                <p> <a href='/users/signout'>SignOut</a></p>
+                <% } else { %>
+                    <p> <a href='/users/signin'>SignIn</a></p>
+                    <p> <a href='/users/signup'>SignUp</a></p>
+                    <% } %>
+        </ul>
+    </div>
 </header>
