@@ -2,8 +2,12 @@
 const user = require('../models/user');
 
 module.exports.userProfile = function (req, res) {
-    return res.render('userProfile', {
-        title: 'User Profile'
+    user.findById(req.params.id,function(err,user){
+        return res.render('userProfile', {
+            title: 'User Profile',
+            user_profile: user
+        });
+
     });
 
 };
@@ -84,3 +88,16 @@ module.exports.destroySession=function(req,res){
     return res.redirect('/');
 };
 
+
+module.exports.userProfileUpdate=function(req,res){
+    if(req.user.id=req.params.id)
+    {
+        user.findByIdAndUpdate(req.params.id,req.body,function(err,updatedUser){
+            return res.redirect('back');
+        });
+    }
+    else
+    {
+        return res.status(401).send('Unauthorized');
+    }
+};

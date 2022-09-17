@@ -4,5 +4,17 @@
     User Profile / <%= title %>
 </h1>
 
-<p> name: <%= locals.user.name %></p>
-<p> email: <%= locals.user.email %></p>
+
+
+<% if(locals.user.id == user_profile.id) { %>
+    <form action="/users/update/<%= user_profile.id %>" method="POST" id="user-update-form">
+        <input type="text" name="name" placeholder=" your name" value="<%= user_profile.name %>" required>
+        <input type="email" name="email" placeholder=" your email" value="<%= user_profile.email %>" required>
+        <button>Update</button>
+    </form>
+
+<% } else { %>
+    <p> name: <%= user_profile.name %></p>
+    <p> email: <%= user_profile.email %></p>
+    
+<% } %>
