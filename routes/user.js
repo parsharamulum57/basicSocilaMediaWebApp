@@ -10,7 +10,7 @@ route.get('/profile',passport.checkAuthentication,userProfileController.userProf
 route.get('/signup',userProfileController.userSignup);
 route.get('/signin',userProfileController.userSignin);
 route.post('/create',userProfileController.userCreate);
-
+route.get('/signout',userProfileController.destroySession);
 
 //using passport as a middle-ware to authenticate
 route.post('/create-session',passport.authenticate(
@@ -21,4 +21,3 @@ route.post('/create-session',passport.authenticate(
 module.exports=route;
 
 
-route.get('/signout',userProfileController.destroySession);

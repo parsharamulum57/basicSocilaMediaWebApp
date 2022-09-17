@@ -41,7 +41,7 @@ app.use(expressSession({
     saveUnintialized: false,
     resave: false,
     cookie: {
-        maxAge: (1000*60)
+        maxAge: (1000*300)
     },
     //mongoStore is used to store the session cookie in the DB
     store: MongoStore.create({
