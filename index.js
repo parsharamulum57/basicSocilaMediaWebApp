@@ -12,6 +12,9 @@ const passportLocal= require('./config/passport-local-strategy');
 
 const MongoStore=require('connect-mongo');
 
+const flash=require('connect-flash');
+const flashCustomMware=require('./config/flashCustomMiddleware');
+
 const app=express();
 const db=require('./config/mongoose');
 
@@ -60,6 +63,9 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticateduser);
+
+app.use(flash());
+app.use(flashCustomMware.setFlash);
 
 
 app.set('view engine', 'ejs');

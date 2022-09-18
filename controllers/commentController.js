@@ -12,6 +12,7 @@ module.exports.commentCreate = function (req, res){
                 post.comments.push(comment);
                 post.save();
 
+                req.flash('success','comment posted');
                 res.redirect('back');
             });
         }
@@ -20,6 +21,7 @@ module.exports.commentCreate = function (req, res){
 };
 
 
+//using callback Hell
 module.exports.commentDestroy=function(req,res){
     console.log("in comments destroy ",req.params);
     Comment.findById(req.params.id,function(err,comment){
@@ -28,6 +30,7 @@ module.exports.commentDestroy=function(req,res){
         {
             let postId=comment.post;
             comment.remove();
+            req.flash('success','comment deleted');
             Post.findByIdAndUpdate(postId,{ $pull: {comments: req.params.id}}, function(err,post){
                 return res.redirect('back');
             })
